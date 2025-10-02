@@ -1,0 +1,1 @@
+{"id":"","cart_items":[],"moderated_cart_items":[],"total_items_count":0,"total_items_price":0,"delivery_price":0,"total_price":0}
