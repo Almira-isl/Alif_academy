@@ -1,0 +1,31 @@
+name: Manual autotests
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Node
+      uses: actions/setup-node@v3
+    
+    - name: Install allure
+      run: sudo npm install -g allure-commandline
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        
+    - name: Install dependencies
+      run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt  # Install dependencies from requirements.txt
+          
+    - name: Run tests
+      run: pytest tests/test_main_page.py -v -s --alluredir allure-results
